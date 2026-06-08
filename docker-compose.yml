@@ -1,0 +1,16 @@
+services:
+  kaggle-runner:
+    build: .
+    container_name: kaggle-runner
+    restart: unless-stopped
+    environment:
+      KAGGLE_USERNAME: ${KAGGLE_USERNAME}
+      KAGGLE_KEY: ${KAGGLE_KEY}
+    expose:
+      - "8000"
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
