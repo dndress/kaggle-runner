@@ -9,8 +9,9 @@ services:
     expose:
       - "8000"
     networks:
-      - dokploy-network
+      - n8n-net
 
 networks:
-  dokploy-network:
+  n8n-net:
+    name: invents-n8n-gxu2qx
     external: true
