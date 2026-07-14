@@ -58,6 +58,7 @@ class PushReq(BaseModel):
     competition_sources: list[str] = []
     kernel_sources: list[str] = []
     model_sources: list[str] = []
+    docker_image_pinning_type: str = "original"  # pin to creation-time env; set "latest" once Kaggle fixes #1546
 
 
 @app.post("/push")
@@ -85,6 +86,7 @@ def push(req: PushReq) -> dict[str, Any]:
             "competition_sources": req.competition_sources,
             "kernel_sources": req.kernel_sources,
             "model_sources": req.model_sources,
+            "docker_image_pinning_type": req.docker_image_pinning_type,
         }
         with open(os.path.join(d, "kernel-metadata.json"), "w", encoding="utf-8") as f:
             json.dump(meta, f)
